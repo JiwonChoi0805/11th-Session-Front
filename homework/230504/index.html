@@ -1,2 +1,91 @@
-<!-- 이 폴더 안에서 과제를 수행해주세요 -->
-<!-- 주석은 지우고 진행해주세요 -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="todoList.css" />
+    <title>To-Do List</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav>
+        <div class="itsokay">< It's okay not to be perfect.</div>
+        <div class="today">
+          <p class="todayA">n월 n일 오늘은</p>
+          <p class="todayB">행운</p>
+        </div>
+        <div class="todoList">To-do List ></div>
+      </nav>
+      <div class="container">
+        <section class="showLevel">
+          <div class="levelBox">
+            <div class="clover">
+              <img src="clover4.png" />
+            </div>
+            <div class="todayDate">May, 5, 2023</div>
+            <div class="acheivePercent">
+              <p class="todayAcheive">오늘의 To-Do</p>
+              <p class="percent">달성률 75%</p>
+            </div>
+            <p class="mentLine1">목표한 일을 이만큼이나 해내다니,</p>
+            <div class="ment">
+              <p class="mentLine2_1">행운</p>
+              <p class="mentLine2_2">이 가득한 하루였어요!</p>
+            </div>
+          </div>
+        </section>
+        <section class="list">
+          <div class="todo-contents">
+            <div class="todo-top">
+              <div class="list-title">To-Do</div>
+              <button class="popup-button">
+                <img src="openInput.png" width="50" height="auto" />
+              </button>
+            </div>
+
+            <form class="todo-form">
+              <input class="todo-input" placeholder="할 일을 입력해주세요" />
+              <button
+                class="todo-input-button"
+                type="submit"
+                style="width: 50px"
+              >
+                <img src="addInput.png" width="100%" height="auto" />
+              </button>
+            </form>
+
+            <ul class="todo-list">
+              <li>
+                <div class="list-item">
+                  <span class="item">끝내주게 자기</span>
+                  <button class="checkTodo">
+                    <img src="rectangleTodo.png" />
+                  </button>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="done-contents">
+            <div class="list-title">Done</div>
+            <ul class="done-list">
+              <li>
+                <div class="list-item">
+                  <span class="item">멋사 투두리스트 디자인 얼른 끝내기</span>
+                  <button class="checkDone">
+                    <img src="rectangleDone.png" />
+                  </button>
+                </div>
+                <button class="delete-list-button">
+                  <img src="deleteList.png" />
+                </button>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </div>
+    </div>
+    <script src="todo.js"></script>
+  </body>
+</html>
