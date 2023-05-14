@@ -4,6 +4,7 @@ const btn = document.querySelector(".popup-button");
 const init = () => {
   form.addEventListener("submit", addTodoItem);
   btn.addEventListener("click", displayForm);
+  btn.addEventListener("click", toggleButtonImage);
 };
 
 //할일을 입력하세요 숨겼다 보이기
@@ -14,6 +15,15 @@ const displayForm = () => {
     form.style.display = "block";
   } else {
     form.style.display = "none";
+  }
+};
+
+const toggleButtonImage = () => {
+  const btnImg = document.querySelector(".write");
+  if (btnImg.getAttribute("src") === "openInput.png") {
+    btnImg.setAttribute("src", "closeInput.png");
+  } else {
+    btnImg.setAttribute("src", "openInput.png");
   }
 };
 
