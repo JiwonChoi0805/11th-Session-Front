@@ -40,7 +40,7 @@ const printTodoItem = (text) => {
   todoBtnImg.setAttribute("src", "rectangleTodo.png");
   todoDel.appendChild(todoBtnImg);
 
-  //todo done으로 보내기 버튼
+  //todo에서 done으로 보내기 버튼
   todoDel.setAttribute("class", "checkTodo");
   todoDel.addEventListener("click", toggleTodoToDone);
 
@@ -70,15 +70,24 @@ const deleteTodoItem = (e) => {
 const toggleTodoToDone = (e) => {
   const target = e.target.parentNode.parentNode.parentNode;
   deleteTodoItem(e);
-  printDoneItem(e.target.innerText);
+  const todoText = target.querySelector(".item").innerText;
+  printDoneItem(todoText);
 };
 
+//done 시작
 //done li 요소로 생성
 const printDoneItem = (text) => {
-  const doneItem = document.createElement("li");
+  const doneList = document.createElement("li");
+
+  const doneItem = document.createElement("div");
   const doneText = document.createElement("span");
   const doneBox = document.createElement("button");
+
   const doneDel = document.createElement("button");
+
+  //done 내용
+  doneText.innerText = text;
+  doneText.className = "item";
 
   //done 체크박스, 삭제버튼
   const doneBtnImg = document.createElement("img");
@@ -90,28 +99,29 @@ const printDoneItem = (text) => {
 
   doneBox.setAttribute("class", "checkDone");
   doneDel.setAttribute("class", "delete-list-button");
+  //done항목 삭제 addEvent
+  doneDel.addEventListener("click", deleteDoneItem);
 
-  //done 내용
-  doneText.innerText = text;
-  doneText.className = "item";
+  //li로 div, span, button을 append child
+  doneList.appendChild(doneItem);
+  doneList.appendChild(doneText);
+  doneList.appendChild(doneBox);
+  doneList.appendChild(doneDel);
 
-  //done li child로 append
+  //div 내에 span, button을 append child
   doneItem.className = "list-item";
   doneItem.appendChild(doneText);
   doneItem.appendChild(doneBox);
-  doneItem.appendChild(doneDel);
 
-  document.querySelector(".done-list").appendChild(doneItem);
-
-  //done항목 삭제 addEvent
-  doneDel.addEventListener("click", deleteDoneItem);
+  document.querySelector(".done-list").appendChild(doneList);
 };
 
-//done항목 삭제
+//done에서 삭제
 const deleteDoneItem = (e) => {
   const target = e.target.parentNode;
+  console.log(document.querySelector(".done-list"));
+  console.log(target);
   document.querySelector(".done-list").removeChild(target);
-  document.querySelector(".done-list").value = "";
 };
 
 init(); //시작 함수
