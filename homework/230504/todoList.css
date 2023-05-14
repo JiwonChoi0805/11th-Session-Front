@@ -85,6 +85,7 @@ nav {
   max-width: 80%;
   height: auto;
   text-align: center;
+  margin-left: 200px;
 }
 
 .todayDate {
@@ -177,7 +178,7 @@ nav {
 }
 
 .todo-form {
-  display: flex;
+  display: inline;
   justify-content: left;
   align-items: center;
   background: #ffffff;
@@ -203,6 +204,7 @@ ul li {
   display: flex;
   align-items: flex-start;
 }
+
 .list-item {
   display: flex;
   justify-content: left;
@@ -212,11 +214,19 @@ ul li {
   padding: 9px 20px;
   gap: 20px;
   border-radius: 15px;
+  margin-bottom: 20px;
+  align-items: flex-start;
 }
 .item {
+  display: flex;
   font-family: "Pretendard";
   font-weight: 600;
   font-size: 32px;
   line-height: 38px;
   color: #ffffff;
+  align-items: flex-start;
+}
+.delete-list-button {
+  margin-top: 7px;
+  margin-left: 3px;
 }
