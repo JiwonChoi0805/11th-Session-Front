@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { ThemeContext } from "../contexts/ThemeContext";
+import { UserContext } from "../contexts/UserContext";
 
-const Content = ({ isDark }) => {
-  const user = "정연주";
+const Content = () => {
+  const { isDark } = useContext(ThemeContext);
+  const { user } = useContext(UserContext);
   return (
     <ContentWrapper isDark={isDark}>
       <div>{user}님, 좋은 하루 되세요!</div>

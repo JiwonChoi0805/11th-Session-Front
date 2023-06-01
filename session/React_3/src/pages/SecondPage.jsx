@@ -3,16 +3,22 @@ import styled from "styled-components";
 import Header from "../components/Header";
 import Content from "../components/Content";
 import Footer from "../components/Footer";
+import { ThemeContext } from "../contexts/ThemeContext";
+import { UserContext } from "../contexts/UserContext";
 
 const SecondPage = () => {
   const [isDark, setIsDark] = useState(false);
 
   return (
-    <PageWrapper>
-      <Header isDark={isDark} />
-      <Content isDark={isDark} />
-      <Footer isDark={isDark} setIsDark={setIsDark} />
-    </PageWrapper>
+    <ThemeContext.Provider value={{ isDark, setIsDark }}>
+      <PageWrapper>
+        <UserContext.Provider value={{ user: "아기사자" }}>
+          <Header />
+          <Content />
+        </UserContext.Provider>
+        <Footer />
+      </PageWrapper>
+    </ThemeContext.Provider>
   );
 };
 
