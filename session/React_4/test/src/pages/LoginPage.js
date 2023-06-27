@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-// 문제 (1)
+import { initUser } from "../redux/userSlice";
 import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
@@ -13,7 +13,12 @@ const LoginPage = () => {
   const dispatch = useDispatch();
   // 정보 저장 함수
   const submintAccounts = () => {
-    // 문제 (2)
+    dispatch(
+      initUser({
+        userID: ID,
+        userName: name,
+      })
+    );
     navigate("/mypage");
   };
 
