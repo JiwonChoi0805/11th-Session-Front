@@ -33,4 +33,5 @@ export const counterSlice = createSlice({
 //위 reducer 자체를 함수로 가져다 쓰려면 export에 다 써넣어야함 =action
 export const { initCounter, increase, decrease } = counterSlice.actions;
 
+//자체가 reducer이므로 store에서 reducer가 여러 개일 때 combined로 묶으려면 써줘야하는 코드
 export default counterSlice.reducer;
