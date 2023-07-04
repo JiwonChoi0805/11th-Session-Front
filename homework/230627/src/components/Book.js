@@ -55,7 +55,10 @@ const Book = (props) => {
     isMyList && likedList.indexOf(String(id)) === -1 && (isValid = false);
     return isValid;
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3f0e69320303af337890cb29590271c27013e28e
   return (
     <>
       {checkValid(book.id) && (
