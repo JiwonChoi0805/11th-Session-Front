@@ -7,10 +7,10 @@ function App() {
   const [render, setRender] = useState(0);
 
   // ✏️ 작성자 이름 (본인 이름으로 수정)
-  const author = "본인 이름으로 설정하세요";
+  const author = "최지원";
 
   // ✏️ 지난 세션 때 잠깐 지나간 내용입니다! 아래 api 코드를 참고하여 작성해보세요.
-  const BASE_URL = "";
+  const BASE_URL = "http://localhost:3001";
 
   // 전체 게시물 관리
   const [lists, setLists] = useState([]);
@@ -42,26 +42,58 @@ function App() {
   // 게시물을 업로드 한 뒤에 변경사항이 즉각적으로 반영되도록 해주세요. 위의 render 변수를 활용해주세요.
   // 모든 코드는 async/await을 사용해서 작성해주세요! 위의 getAllPost 함수와 노션의 코드 블럭을 참고하세요.
   // id는 따로 추가하지 않아도, db에서 자동으로 추가되는 유니크한 값입니다! id를 임의로 추가하거나 제거하지 하지 말아주세요.
-  const uploadPost = () => {};
+  const uploadPost = async (e) => {
+    await e.preventDefault();
+    axios
+      .post(`${BASE_URL}/blog`, {
+        content: newContent,
+        author: author,
+      })
+      .then((response) => {
+        setNewContent(response.data);
+        setRender(render + 1);
+        setNewContent("");
+        console.log(response);
+      })
+      .catch((error) => console.log(error));
+  };
 
   // ✏️ 게시물 삭제하기 (DELETE)
   // 게시물을 삭제하려면, 삭제하려는 게시물을 특정할 수 있어야해요. 인자로 유니크한 값을 받아와야합니다. 어떤 값을 받아올까요?
   // map 함수를 사용할 때, key를 지정해주지 않으면 콘솔에 warning이 뜨는 것 기억하시나요? 이 때 key는 반드시 유니크한 값이어야합니다.
   // 이를 활용하면 인자로 어떤 값을 받아올 지 알 수 있을 것 같아요.
   // 삭제 역시 변경사항이 즉각적으로 반영되도록 작성해주세요.
-  const deletePost = () => {};
+  const deletePost = async (id) => {
+    await axios
+      .delete(`${BASE_URL}/blog/${id}`)
+      .then((response) => {
+        setRender(render - 1);
+        console.log(response);
+      })
+      .catch((error) => console.log(error));
+  };
 
   // ✏️ 게시물 수정하기 (PATCH)
   // 실습에는 게시물 수정이 없지만, 수정할 수 있는 함수를 만들어볼까요? DELETE와 POST를 합치면 PATCH가 될 것 같아요.
   // 만약 시간이 남는다면... 게시물 수정을 구현해봐도 좋아요.
+  const editPost = async (id) => {
+    await axios
+      .patch(`${BASE_URL}/blog/${id}`, {
+        content: newContent,
+        author: author,
+      })
+      .then((response) => {
+        console.log(response);
+      });
+  };
 
   // JSX
   return (
     <>
       <Container>
-        <form className='input-container' onSubmit={() => uploadPost()}>
+        <form className="input-container" onSubmit={uploadPost}>
           <Input
-            type='text'
+            type="text"
             onChange={(e) => setNewContent(e.target.value)}
             value={newContent}
           />
@@ -70,9 +102,9 @@ function App() {
         {lists.map((list) => {
           return (
             <List key={list.id}>
-              <div className='author-box'>작성자: {list.author}</div>
-              <div className='content-box'>{list.content}</div>
-              <div className='delete-box'>
+              <div className="author-box">작성자: {list.author}</div>
+              <div className="content-box">{list.content}</div>
+              <div className="delete-box">
                 <GrayButton onClick={() => deletePost(list.id)}>
                   삭제
                 </GrayButton>
